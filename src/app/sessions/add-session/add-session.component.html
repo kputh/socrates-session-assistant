@@ -28,16 +28,22 @@
            list="knownLocations"
            required
            [(ngModel)]="session.location" name="location">
-    <datalist id="knownLocations" *ngFor="let location of knownLocations">
-      <option [value]="location">
+    <datalist id="knownLocations">
+      <option *ngFor="let location of knownLocations"
+              [value]="location">
     </datalist>
   </div>
 
   <div class="form-group">
     <label for="facilitator">Facilitator</label>
     <input type="text" class="form-control" id="facilitator"
+           list="knownFacilitators"
            required
            [(ngModel)]="session.facilitator" name="facilitator">
+    <datalist id="knownFacilitators">
+      <option *ngFor="let facilitator of knownFacilitators"
+              [value]="facilitator">
+    </datalist>
   </div>
 
   <button type="submit" class="btn btn-success"
