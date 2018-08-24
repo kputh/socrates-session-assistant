@@ -1,3 +1,51 @@
-<p>
-  add-session works!
-</p>
+<h1>Add new session</h1>
+<form (ngSubmit)="onSubmit()" #sessionForm="ngForm">
+
+  <div class="form-group">
+    <label for="title">Title</label>
+    <input type="text" class="form-control" id="title"
+           required
+           [(ngModel)]="session.title" name="title">
+  </div>
+
+  <div class="form-group">
+    <label for="starting-time">Starting time</label>
+    <input type="time" class="form-control" id="starting-time"
+           required
+           [(ngModel)]="session.startingTime" name="starting-time">
+  </div>
+
+  <div class="form-group">
+    <label for="starting-time">Ending time</label>
+    <input type="time" class="form-control" id="ending-time"
+           required
+           [(ngModel)]="session.endTime" name="ending-time">
+  </div>
+
+  <div class="form-group">
+    <label for="location">Location</label>
+    <input type="text" class="form-control" id="location"
+           list="knownLocations"
+           required
+           [(ngModel)]="session.location" name="location">
+    <datalist id="knownLocations" *ngFor="let location of knownLocations">
+      <option [value]="location">
+    </datalist>
+  </div>
+
+  <div class="form-group">
+    <label for="facilitator">Facilitator</label>
+    <input type="text" class="form-control" id="facilitator"
+           required
+           [(ngModel)]="session.facilitator" name="facilitator">
+  </div>
+
+  <button type="submit" class="btn btn-success"
+          [disabled]="!sessionForm.form.valid">Add session
+  </button>
+
+  <button type="reset" class="btn btn-secondary"
+          [disabled]="!sessionForm.form.pristine">Reset form
+  </button>
+
+</form>
