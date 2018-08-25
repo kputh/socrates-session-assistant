@@ -1,6 +1,8 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {FormsModule} from '@angular/forms';
 
-import { AddSessionComponent } from './add-session.component';
+import {AddSessionComponent} from './add-session.component';
 
 describe('AddSessionComponent', () => {
   let component: AddSessionComponent;
@@ -8,9 +10,13 @@ describe('AddSessionComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddSessionComponent ]
+      imports: [
+        FormsModule,
+        HttpClientTestingModule
+      ],
+      declarations: [AddSessionComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
