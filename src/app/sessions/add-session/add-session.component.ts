@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 
-import {Facilitator, Location, Session} from '../session';
+import {KnownLocationsDataService} from '../../core/known-locations-data.service';
+import {Facilitator, Session} from '../session';
 import {SessionDataService} from '../session-data.service';
 
 @Component({
@@ -10,18 +11,25 @@ import {SessionDataService} from '../session-data.service';
 })
 export class AddSessionComponent {
 
-  constructor(private readonly sessionDataService: SessionDataService) {}
+  constructor(
+    public readonly knownLocations: KnownLocationsDataService,
+    private readonly sessionDataService: SessionDataService
+  ) {}
 
   session = new Session('', new Date(), new Date(), '', '');
 
   readonly knownFacilitators = new Set<Facilitator>(['Ernie', 'Bert']);
-  readonly knownLocations = new Set<Location>(['Berlin', 'Potsdam']);
 
   onSubmit() {
     this.knownFacilitators.add(this.session.facilitator);
     this.knownLocations.add(this.session.location);
 
     this.sessionDataService.addNewSession(this.session);
+
+    this.resetForm();
   }
 
+  private resetForm() {
+    this.session = new Session('', new Date(), new Date(), '', '');
+  }
 }
