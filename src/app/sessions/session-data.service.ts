@@ -1,4 +1,4 @@
-import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 
 import {SettingsDataService} from '../core/settings-data.service';
@@ -19,20 +19,21 @@ export class SessionDataService {
 
   addNewSession(newSession: Session) {
 
-    // ToDo authenticate using OAuth2 or API key
-    // ToDo construct ValueRange instance as body
-    const oauth2Token = 'cake';
-
     const url = appendRowUrl
       .replace('{spreadsheetId}', this.settings.spreadsheetId)
       .replace('{range}', '');
-    const headers = new HttpHeaders()
-      .set('Authorization', `Bearer ${oauth2Token}`);
     const params = new HttpParams()
+      .set('key', this.settings.googleSheetsApiKey)
       .set('valueInputOption', 'RAW')
       .set('insertDataOption', 'INSERT_ROWS');
+    const body = this.convertSessionToValueRange(newSession);
 
-    return this.http.post(url, newSession, {headers, params});
+    return this.http.post(url, body, {params});
+  }
+
+  private convertSessionToValueRange(session: Session) {
+    // ToDo construct ValueRange instance as body
+    return session;
   }
 
 }
