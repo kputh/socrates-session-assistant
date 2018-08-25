@@ -1,8 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
-import {AddSessionComponent} from './sessions/add-session/add-session.component';
-
 const routes: Routes = [
 ];
 
