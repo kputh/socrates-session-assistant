@@ -14,7 +14,8 @@ export class AddSessionComponent {
   constructor(
     public readonly knownLocations: KnownLocationsDataService,
     private readonly sessionDataService: SessionDataService
-  ) {}
+  ) {
+  }
 
   session = new Session('', '10:00', '11:00', '', '');
 
@@ -24,9 +25,13 @@ export class AddSessionComponent {
     this.knownFacilitators.add(this.session.facilitator);
     this.knownLocations.add(this.session.location);
 
-    this.sessionDataService.addNewSession(this.session);
+    this.sessionDataService.addNewSession(this.session)
+      .subscribe(() => {
+        this.resetForm();
+      }, err => {
+        console.error(JSON.stringify(err));
+      });
 
-    this.resetForm();
   }
 
   private resetForm() {
