@@ -20,7 +20,7 @@
     <div class="form-group col-md-6">
       <label for="ending-time">Ending time</label>
       <input type="time" class="form-control" id="ending-time"
-             required
+             required min="{{session.startingTime}}"
              [(ngModel)]="session.endTime" name="ending-time">
     </div>
 

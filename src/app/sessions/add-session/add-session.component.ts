@@ -16,7 +16,7 @@ export class AddSessionComponent {
     private readonly sessionDataService: SessionDataService
   ) {}
 
-  session = new Session('', new Date(), new Date(), '', '');
+  session = new Session('', '10:00', '11:00', '', '');
 
   readonly knownFacilitators = new Set<Facilitator>(['Ernie', 'Bert']);
 
@@ -30,6 +30,6 @@ export class AddSessionComponent {
   }
 
   private resetForm() {
-    this.session = new Session('', new Date(), new Date(), '', '');
+    this.session = new Session('', '10:00', '11:00', '', '');
   }
 }

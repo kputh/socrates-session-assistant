@@ -5,8 +5,8 @@ export class Session {
 
   constructor(
     public title: string,
-    public startingTime: Date,
-    public endTime: Date,
+    public startingTime: string,
+    public endTime: string,
     public location: Facilitator,
     public facilitator: Location
   ) {
