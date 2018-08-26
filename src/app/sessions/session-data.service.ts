@@ -6,6 +6,10 @@ import {Session} from './session';
 
 const appendRowUrl = 'https://sheets.googleapis.com/v4/spreadsheets/{spreadsheetId}/values/{range}:append';
 
+/*
+ * documentation of the target api: https://developers.google.com/sheets/api/reference/rest/v4/spreadsheets.values/append
+ */
+
 @Injectable({
   providedIn: 'root'
 })
@@ -21,9 +25,9 @@ export class SessionDataService {
 
     const url = appendRowUrl
       .replace('{spreadsheetId}', this.settings.spreadsheetId)
-      .replace('{range}', '');
+      .replace('{range}', 'A1:H300'); // ToDo
     const params = new HttpParams()
-      .set('key', this.settings.googleSheetsApiKey)
+      .set('key', this.settings.googleSheetsApiKey) // ToDo use OAuth2 instead
       .set('valueInputOption', 'RAW')
       .set('insertDataOption', 'INSERT_ROWS');
     const body = this.convertSessionToValueRange(newSession);
@@ -32,8 +36,17 @@ export class SessionDataService {
   }
 
   private convertSessionToValueRange(session: Session) {
-    // ToDo construct ValueRange instance as body
-    return session;
+    return {
+      'range': 'A1:H300', // ToDo
+      'majorDimension': 'ROWS', // optional?
+      'values': [
+        session.title,
+        session.startingTime,
+        session.endTime,
+        session.location,
+        session.facilitator,
+      ]
+    };
   }
 
 }
