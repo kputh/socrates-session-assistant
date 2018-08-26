@@ -29,4 +29,15 @@ describe('SettingsDataService', () => {
       expect(service.spreadsheetId).toBe('spreadsheet-id');
     }));
 
+  it('can store settings independently',
+    inject([SettingsDataService], (service: SettingsDataService) => {
+
+      service.googleSheetsApiKey = 'one';
+      service.spreadsheetId = 'two';
+
+      expect(service.googleSheetsApiKey).toBe('one');
+      expect(service.spreadsheetId).toBe('two');
+
+    }));
+
 });

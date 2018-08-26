@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 
-const googleSheetsApiKeyKey = 'spreadsheet-id';
+const googleSheetsApiKeyKey = 'google_sheets_api_key';
 const spreadsheetIdKey = 'spreadsheet-id';
 
 @Injectable({
