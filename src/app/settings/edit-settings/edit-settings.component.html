@@ -11,7 +11,7 @@
   <div class="form-group">
     <label for="spreadsheet_id">spreadsheet ID</label>
     <input type="text" class="form-control" id="spreadsheet_id"
-           required
+           required pattern="[a-zA-Z0-9-_]+"
            [(ngModel)]="settings.spreadsheetId" name="spreadsheet_id">
   </div>
 
