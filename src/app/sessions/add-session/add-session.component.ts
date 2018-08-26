@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {MatSnackBar} from '@angular/material';
 
 import {KnownLocationsDataService} from '../../core/known-locations-data.service';
 import {Facilitator, Session} from '../session';
@@ -12,6 +13,7 @@ import {SessionDataService} from '../session-data.service';
 export class AddSessionComponent {
 
   constructor(
+    public readonly snackBar: MatSnackBar,
     public readonly knownLocations: KnownLocationsDataService,
     private readonly sessionDataService: SessionDataService
   ) {
@@ -28,8 +30,15 @@ export class AddSessionComponent {
     this.sessionDataService.addNewSession(this.session)
       .subscribe(() => {
         this.resetForm();
+        this.snackBar.open(
+          `Saved session "${this.session.title}".`,
+          null,
+          {duration: 1500});
       }, err => {
         console.error(JSON.stringify(err));
+        this.snackBar.open(
+          `Failed to save session "${this.session.title}".`,
+          'Dismiss');
       });
 
   }
